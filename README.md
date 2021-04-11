@@ -14,3 +14,9 @@ The following table shows the training summary for different models in tensorflo
 |	|24,3	|10	|1	|0.0018	|0.637	|1.3047|
 |3	|15,4	|15	|1	|0.0048	|0.691	|1.4803|
 |	|8,3	|15	|1	|0.0074	|0.672	|1.5763|
+
+A few of detection test results are given below:
+
+![ss1](./Screenshots/Screenshot1.png)
+![ss2](./Screenshots/Screenshot2.png)
+![ss3](./Screenshots/Screenshot3.png)
