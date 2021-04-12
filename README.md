@@ -1,8 +1,7 @@
 # Computer-Vision-based-Web-App
-This is one of the projects being done under the hood of Summer of Code '21 by WnCC, IIT Bombay. The objective of this project is to make a web app that can perform object detection and data analysis using tensorflow, opencv, yolo, faster-cnn and python.
 
-
-The following table shows the training summary for different models in tensorflow.keras which is being trained to distinguish between cat and dog images.
+This is a machine learning model that predicts whether the input image is a cat or a dog using tensorflow.keras in python.
+The following table shows the training summary for different models in tensorflow.keras .
 
 | Model | Architecture(number and size of filters) | Epochs | acc | loss | val\_acc | val\_loss |
 | --- | --- | --- | --- | --- | --- | --- |
