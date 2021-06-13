@@ -1,4 +1,4 @@
-# Computer Vision (web App)
+# Computer Vision (Web App)
 This directory includes all the files needed for running the web app.
 
 ## Instructions to run it locally:
