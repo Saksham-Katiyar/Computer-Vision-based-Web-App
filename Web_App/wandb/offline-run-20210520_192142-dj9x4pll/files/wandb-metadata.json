@@ -1,0 +1,37 @@
+{
+    "os": "Linux-5.8.0-53-generic-x86_64-with-glibc2.29",
+    "python": "3.8.5",
+    "heartbeatAt": "2021-05-20T13:51:42.724244",
+    "startedAt": "2021-05-20T13:51:42.240349",
+    "docker": null,
+    "gpu": "GeForce GTX 1650 Ti",
+    "gpu_count": 1,
+    "cpu_count": 12,
+    "cuda": null,
+    "args": [
+        "--img",
+        "640",
+        "--batch",
+        "16",
+        "--epochs",
+        "3",
+        "--data",
+        "coco128.yaml",
+        "--weights",
+        "yolov5s.pt",
+        "--nosave",
+        "--cache"
+    ],
+    "state": "running",
+    "program": "train.py",
+    "codePath": "train.py",
+    "git": {
+        "remote": "https://github.com/ultralytics/yolov5",
+        "commit": "7b863a34dcacf8b310396d0bc1021f404ec85797"
+    },
+    "email": null,
+    "root": "/home/saksham/yolo_v5/yolov5",
+    "host": "Mr",
+    "username": "saksham",
+    "executable": "/usr/bin/python3"
+}
