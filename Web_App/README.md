@@ -15,5 +15,5 @@ This directory includes all the files needed for running the web app.
 
 ## Improvements
 This is not the final output of the project and there are lots of improvements to be done including:<br>
-1. Better HTML/CSS template for the output of improving the current one.
+1. Better HTML/CSS template for the output or improving the current one.
 2. Adding features like storing the output in a well-organised file.
