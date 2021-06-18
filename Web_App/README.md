@@ -1,5 +1,5 @@
 # Computer Vision (Web App)
-This directory includes all the files needed for running the web app.
+This directory includes all the files needed for running the web app. The object detection and classification is done using YOLOv5 (https://github.com/ultralytics/yolov5).
 
 ## Instructions to run it locally:
 * Clone the repo and move to this directory<br>
