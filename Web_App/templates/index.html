@@ -20,6 +20,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 img {
   float:left;
 }
+button {
+  outline: none;
+}
 </style>
 <body>
 
@@ -47,10 +50,23 @@ img {
 <div class="w3-main" style="margin-left:250px">
 
   <div class="w3-row w3-padding-64">
-    <div class="w3-twothird w3-container">
+    <div class="w3-twothird w3-container" id="first">
       <h1 class="w3-text-teal">Computer-Vision</h1>
       <p>This project lets you detect and classify object in real time using input from the webcam. The program uses yolo_v5 project to detect images in the video feed.</p>
       <img src="{{url_for('video_feed')}}" alt="Some error" >
+      <iframe src={{url_for('output')}} height="500" width="300" title="Output window"></iframe>
+      <!-- <table>
+        <p>abcd</p>
+        {% for i in rows %}
+           <tr>
+              <td> {{ i }} </td>
+           </tr>
+        {% endfor %}
+      </table> -->
+    </div>
+    <div class="container">
+      <button class="b1" onClick="switchOn()">Switch On</button>
+      <button class="b2" onClick="switchOff()">Switch Off</button>
     </div>
   </div>
 
@@ -91,6 +107,14 @@ function w3_open() {
 function w3_close() {
   mySidebar.style.display = "none";
   overlayBg.style.display = "none";
+}
+
+const switchOn = () => {
+  document.getElementById("first").style.display ='block';
+}
+
+const switchOff = () => {
+  document.getElementById("first").style.display ='none';
 }
 </script>
 

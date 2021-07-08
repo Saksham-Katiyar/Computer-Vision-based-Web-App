@@ -25,11 +25,13 @@ import cv2
 
 #Initialize the Flask app
 app = Flask(__name__)
-
+rows2=[]
+s, s2 = '', ''
 
 def detect(save_img=False):
     global rows2
-    rows2=[]
+    global s
+    global s2
     print("in detect...................................")
     source, weights, view_img, save_txt, imgsz = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size
     webcam = source.isnumeric() or source.endswith('.txt') or source.lower().startswith(
@@ -97,14 +99,15 @@ def detect(save_img=False):
         # Process detections
         for i, det in enumerate(pred):  # detections per image
             if webcam:  # batch_size >= 1
-                p, s, im0, frame = path[i], '%g: ' % i, im0s[i].copy(), dataset.count
+                # p, s, im0, frame = path[i], '%g: ' % i, im0s[i].copy(), dataset.count
+                p, s, im0, frame = path[i], '', im0s[i].copy(), dataset.count
             else:
                 p, s, im0, frame = path, '', im0s, getattr(dataset, 'frame', 0)
 
             p = Path(p)  # to Path
             save_path = str(save_dir / p.name)  # img.jpg
             txt_path = str(save_dir / 'labels' / p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # img.txt
-            s += '%gx%g ' % img.shape[2:]  # print string
+            # s += '%gx%g ' % img.shape[2:]  # print string
             gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
             if len(det):
                 # Rescale boxes from img_size to im0 size
@@ -114,10 +117,11 @@ def detect(save_img=False):
                 for c in det[:, -1].unique():
                     n = (det[:, -1] == c).sum()  # detections per class
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
-                    print("ccccccc:", c)
-                    print("nnnnnnn:", n)
+                    # print("ccccccc:", c)
+                    # print("nnnnnnn:", n)
                     print("sssssss:", names[int(c)])
-                    rows2.append(str(c))
+                    # rows2.append(str(c))
+                    # print(rows2)
                 # Write results
                 for *xyxy, conf, cls in reversed(det):
                     if save_txt:  # Write to file
@@ -131,6 +135,10 @@ def detect(save_img=False):
                         plot_one_box(xyxy, im0, label=label, color=colors[int(cls)], line_thickness=3)
 
             # Print time (inference + NMS)
+            if s == '':
+                s = 'Empty.'
+            else:
+                s = s[:-2] + '.'
             print(f'{s}Done. ({t2 - t1:.3f}s)')
             ret, im0 = cv2.imencode('.jpg', im0)
             frame = im0.tobytes()
@@ -166,7 +174,7 @@ def detect(save_img=False):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--weights', nargs='+', type=str, default='yolov5s.pt', help='model.pt path(s)')
-    parser.add_argument('--source', type=str, default='data/images', help='source')  # file/folder, 0 for webcam
+    parser.add_argument('--source', type=str, default='0', help='source')  # file/folder, 0 for webcam
     parser.add_argument('--img-size', type=int, default=640, help='inference size (pixels)')
     parser.add_argument('--conf-thres', type=float, default=0.25, help='object confidence threshold')
     parser.add_argument('--iou-thres', type=float, default=0.45, help='IOU threshold for NMS')
@@ -192,6 +200,17 @@ if __name__ == '__main__':
                 strip_optimizer(opt.weights)
         else:
             detect()
+
+def out():
+    global s2
+    global s
+    while(True):
+        if s2 != s and s.endswith("."):
+            s2 = s
+            yield s2+"<br>"
+        else:
+            yield ''
+
 def stream_template(template_name, **context):
     app.update_template_context(context)
     t = app.jinja_env.get_template(template_name)
@@ -204,16 +223,20 @@ def stream_template(template_name, **context):
 
 @app.route('/', methods = ['POST', 'GET'])
 def stream_view():
+    global rows2
     rows = []
     for i in range(10):
       rows.append(str(i))
-    #rows = rows2
-    return Response(stream_with_context(stream_template('index.html', rows=rows)))
+    # rows = rows2
+    return Response(stream_with_context(stream_template('index.html', rows=rows2)))
 
 @app.route('/video_feed')
 def video_feed():
     return Response(detect(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+@app.route('/output')
+def output():
+    return Response(out(), mimetype='text/html')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)            
