@@ -12,6 +12,7 @@ This directory includes all the files needed for running the web app. The object
 `python3 detect.py --source 0`
 * Copy the url shown in the terminal and open it in a browser. The output will look like the screenshot attched below.<br>
 ![ss1](../Screenshots/Screenshot4.png)
+![ss1](../Screenshots/Screenshot5.png)
 
 ## Improvements
 This is not the final output of the project and there are lots of improvements to be done including:<br>
