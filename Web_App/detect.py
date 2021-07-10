@@ -114,8 +114,8 @@ def detect(save_img=False):
                 det[:, :4] = scale_coords(img.shape[2:], det[:, :4], im0.shape).round()
 
                 # Print results
-                for c in det[:, -1].unique():
-                    n = (det[:, -1] == c).sum()  # detections per class
+                for c in det[:, -1].unique():  # detections per class
+                    n = (det[:, -1] == c).sum()
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
                     # print("ccccccc:", c)
                     # print("nnnnnnn:", n)
@@ -133,6 +133,10 @@ def detect(save_img=False):
                     if save_img or view_img:  # Add bbox to image
                         label = f'{names[int(cls)]} {conf:.2f}'
                         plot_one_box(xyxy, im0, label=label, color=colors[int(cls)], line_thickness=3)
+                        # print(int(xyxy[0]))
+                    # crop_img = im0[int(xyxy[1]):int(xyxy[3]), int(xyxy[0]):int(xyxy[2])]
+                    # cv2.imshow("cropped", crop_img)
+                    # cv2.waitKey(0)
 
             # Print time (inference + NMS)
             if s == '':
