@@ -24,7 +24,7 @@ from time import sleep
 import cv2
 
 #Initialize the Flask app
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static", template_folder="templates")
 rows2=[]
 s, s2 = '', ''
 
