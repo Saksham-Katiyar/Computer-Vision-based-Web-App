@@ -38,8 +38,8 @@ def detect(save_img=False):
         ('rtsp://', 'rtmp://', 'http://'))
 
     # Directories
-    save_dir = Path(increment_path(Path(opt.project) / opt.name, exist_ok=opt.exist_ok))  # increment run
-    (save_dir / 'labels' if save_txt else save_dir).mkdir(parents=True, exist_ok=True)  # make dir
+    # save_dir = Path(increment_path(Path(opt.project) / opt.name, exist_ok=opt.exist_ok))  # increment run
+    # (save_dir / 'labels' if save_txt else save_dir).mkdir(parents=True, exist_ok=True)  # make dir
 
     # Initialize
     set_logging()
@@ -105,8 +105,8 @@ def detect(save_img=False):
                 p, s, im0, frame = path, '', im0s, getattr(dataset, 'frame', 0)
 
             p = Path(p)  # to Path
-            save_path = str(save_dir / p.name)  # img.jpg
-            txt_path = str(save_dir / 'labels' / p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # img.txt
+            # save_path = str(save_dir / p.name)  # img.jpg
+            # txt_path = str(save_dir / 'labels' / p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # img.txt
             # s += '%gx%g ' % img.shape[2:]  # print string
             gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
             if len(det):
@@ -151,25 +151,25 @@ def detect(save_img=False):
             #cv2.waitKey(1)  # 1 millisecond
 
             # Save results (image with detections)
-            if save_img:
-                if dataset.mode == 'image':
-                    cv2.imwrite(save_path, im0)
-                else:  # 'video'
-                    if vid_path != save_path:  # new video
-                        vid_path = save_path
-                        if isinstance(vid_writer, cv2.VideoWriter):
-                            vid_writer.release()  # release previous video writer
+            # if save_img:
+            #     if dataset.mode == 'image':
+            #         cv2.imwrite(save_path, im0)
+            #     else:  # 'video'
+            #         if vid_path != save_path:  # new video
+            #             vid_path = save_path
+            #             if isinstance(vid_writer, cv2.VideoWriter):
+            #                 vid_writer.release()  # release previous video writer
 
-                        fourcc = 'mp4v'  # output video codec
-                        fps = vid_cap.get(cv2.CAP_PROP_FPS)
-                        w = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-                        h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-                        vid_writer = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*fourcc), fps, (w, h))
-                    vid_writer.write(im0)
+            #             fourcc = 'mp4v'  # output video codec
+            #             fps = vid_cap.get(cv2.CAP_PROP_FPS)
+            #             w = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+            #             h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+            #             vid_writer = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*fourcc), fps, (w, h))
+            #         vid_writer.write(im0)
 
-    if save_txt or save_img:
-        s = f"\n{len(list(save_dir.glob('labels/*.txt')))} labels saved to {save_dir / 'labels'}" if save_txt else ''
-        print(f"Results saved to {save_dir}{s}")
+    # if save_txt or save_img:
+    #     s = f"\n{len(list(save_dir.glob('labels/*.txt')))} labels saved to {save_dir / 'labels'}" if save_txt else ''
+    #     print(f"Results saved to {save_dir}{s}")
 
     print("rowwwwwwwwwwwwwwwwwwwwwwwwwws2", rows2)
     print(f'Done. ({time.time() - t0:.3f}s)')
