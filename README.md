@@ -1,21 +1,10 @@
-# Computer-Vision-based-Web-App
+# Computer Vision
 
-This is a machine learning model that predicts whether the input image is a cat or a dog using tensorflow.keras in python.
-The following table shows the training summary for different models in tensorflow.keras .
+This was a learning project pursued to step into the world of Machine Learning and Computer vision to be specific.<br>
 
-| Model | Architecture(number and size of filters) | Epochs | acc | loss | val\_acc | val\_loss |
-| --- | --- | --- | --- | --- | --- | --- |
-|Without MaxPool2D layer	|15,3	|15	|1	|0.0027	|0.636	|1.1892|
-|	  |16,4	|15	|1	|7.68E-04	|0.63	|1.5135|
-|	  |24,3	|10	|1	|0.0018	|0.637	|1.3047|
-|With 1 MaxPool2D layer 	|64,3	|10	|0.9999	|0.1019	|0.691	|1.15|
-|	  |32,3	|13	|1	|0.0027	|0.684	|1.3229|
-|	  |8,3	|20	|1	|0.0025	|0.698	|1.2637|	
-|With 3 MaxPool2D layers	|16,3	 |25 |0.9979	|0.0389	|0.704	|1.3593|
-|   |8,3	|25	|0.9065	|0.229	|0.685	|1.1065|
+This project was divided into many parts which include:
+- CatVsDogs model - A model that classifies an image as a cat or a dog. It cleared the general concepts and terminologies of computer vision. Different architectures (different settings of convolutional layers) were trained and their corresponding performance was recorded to find the optimum the settings.
+- Trying YOLOv3 to get familiar with the application of the fastest object detection methods available. Learning how dows YOLO algorithms work and how are they faster than others.
+- Making a web based based on Computer Vision using flask framework. This was the major part of the project. YOLOv5 is implemented to detect, classify and put bounded boxes in a live stream of images (coming from webcam). The output is rendered on a simple web page, which also includes live updating list of objects. Another feature added was that the background of the list changes colour to RED when a cell-phone is detected in the stream.
 
-A few of detection test results are given below:
-
-![ss1](./Screenshots/Screenshot1.png)
-![ss2](./Screenshots/Screenshot2.png)
-![ss3](./Screenshots/Screenshot3.png)
+(Separate descriptions and screenshots are added to respective folders)
